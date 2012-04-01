@@ -1,4 +1,23 @@
 -- OpenGL 1.1
+-- versions {{{
+INSERT INTO versions (name, major, minor) VALUES ('GL', 1, 1);
+-- }}}
+
+-- histories before 1.1 {{{
+INSERT INTO histories (api_id, version_id, status)
+  SELECT apis.id, versions.id, 1 FROM apis, versions
+    WHERE versions.name IS 'GL' AND versions.major == 1 AND versions.minor == 1;
+UPDATE histories SET status = 4 WHERE
+  histories.api_id IN (SELECT id from apis WHERE (
+    name IS 'Colorb' OR
+    name IS 'Colorf' OR
+    name IS 'Colori' OR
+    name IS 'Colors'
+  )) AND histories.version_id IN (SELECT id from versions WHERE (
+    versions.name IS 'GL' AND versions.major == 1 AND versions.minor == 1
+  ));
+-- }}}
+
 -- apis {{{
 BEGIN;
 -- INSERT INTO apis (name) VALUES ('Accum');
@@ -189,295 +208,16 @@ INSERT INTO apis (name) VALUES ('VertexPointer');
 END;
 -- }}}
 
--- histories {{{
 BEGIN;
-INSERT INTO histories (api_id, version_id, status)
-  SELECT apis.id, versions.id, 1 FROM apis, versions
-    WHERE versions.name IS 'GL' AND versions.major == 1 AND versions.minor == 1;
-UPDATE histories SET status = 4 WHERE
-  histories.api_id IN (SELECT id from apis WHERE (
-    name IS 'Colorb' OR
-    name IS 'Colorf' OR
-    name IS 'Colori' OR
-    name IS 'Colors'
-  )) AND histories.version_id IN (SELECT id from versions WHERE (
-    versions.name IS 'GL' AND versions.major == 1 AND versions.minor == 1
-  ));
-
--- from 1.1 {{{
-INSERT INTO histories (api_id, version_id, status)
-  SELECT apis.id, versions.id, 2 FROM apis, versions
-  WHERE apis.name IS 'AreTexturesResident' AND
-        versions.name IS 'GL' AND versions.major == 1 AND versions.minor == 1;
-INSERT INTO histories (api_id, version_id, status)
-  SELECT apis.id, versions.id, 2 FROM apis, versions
-  WHERE apis.name IS 'ArrayElement' AND
-        versions.name IS 'GL' AND versions.major == 1 AND versions.minor == 1;
-INSERT INTO histories (api_id, version_id, status)
-  SELECT apis.id, versions.id, 2 FROM apis, versions
-  WHERE apis.name IS 'BindTexture' AND
-        versions.name IS 'GL' AND versions.major == 1 AND versions.minor == 1;
-INSERT INTO histories (api_id, version_id, status)
-  SELECT apis.id, versions.id, 2 FROM apis, versions
-  WHERE apis.name IS 'CopyTexImage1D' AND
-        versions.name IS 'GL' AND versions.major == 1 AND versions.minor == 1;
-INSERT INTO histories (api_id, version_id, status)
-  SELECT apis.id, versions.id, 2 FROM apis, versions
-  WHERE apis.name IS 'CopyTexImage2D' AND
-        versions.name IS 'GL' AND versions.major == 1 AND versions.minor == 1;
-INSERT INTO histories (api_id, version_id, status)
-  SELECT apis.id, versions.id, 2 FROM apis, versions
-  WHERE apis.name IS 'CopyTexSubImage1D' AND
-        versions.name IS 'GL' AND versions.major == 1 AND versions.minor == 1;
-INSERT INTO histories (api_id, version_id, status)
-  SELECT apis.id, versions.id, 2 FROM apis, versions
-  WHERE apis.name IS 'CopyTexSubImage2D' AND
-        versions.name IS 'GL' AND versions.major == 1 AND versions.minor == 1;
-INSERT INTO histories (api_id, version_id, status)
-  SELECT apis.id, versions.id, 2 FROM apis, versions
-  WHERE apis.name IS 'DeleteTextures' AND
-        versions.name IS 'GL' AND versions.major == 1 AND versions.minor == 1;
-INSERT INTO histories (api_id, version_id, status)
-  SELECT apis.id, versions.id, 2 FROM apis, versions
-  WHERE apis.name IS 'DrawArray' AND
-        versions.name IS 'GL' AND versions.major == 1 AND versions.minor == 1;
-INSERT INTO histories (api_id, version_id, status)
-  SELECT apis.id, versions.id, 2 FROM apis, versions
-  WHERE apis.name IS 'DrawElements' AND
-        versions.name IS 'GL' AND versions.major == 1 AND versions.minor == 1;
-INSERT INTO histories (api_id, version_id, status)
-  SELECT apis.id, versions.id, 2 FROM apis, versions
-  WHERE apis.name IS 'EdgeFlagPointer' AND
-        versions.name IS 'GL' AND versions.major == 1 AND versions.minor == 1;
-INSERT INTO histories (api_id, version_id, status)
-  SELECT apis.id, versions.id, 2 FROM apis, versions
-  WHERE apis.name IS 'EdgeFlagv' AND
-        versions.name IS 'GL' AND versions.major == 1 AND versions.minor == 1;
-INSERT INTO histories (api_id, version_id, status)
-  SELECT apis.id, versions.id, 2 FROM apis, versions
-  WHERE apis.name IS 'EnableClientState' AND
-        versions.name IS 'GL' AND versions.major == 1 AND versions.minor == 1;
-INSERT INTO histories (api_id, version_id, status)
-  SELECT apis.id, versions.id, 2 FROM apis, versions
-  WHERE apis.name IS 'GenTextures' AND
-        versions.name IS 'GL' AND versions.major == 1 AND versions.minor == 1;
-INSERT INTO histories (api_id, version_id, status)
-  SELECT apis.id, versions.id, 2 FROM apis, versions
-  WHERE apis.name IS 'GetPointerv' AND
-        versions.name IS 'GL' AND versions.major == 1 AND versions.minor == 1;
-INSERT INTO histories (api_id, version_id, status)
-  SELECT apis.id, versions.id, 2 FROM apis, versions
-  WHERE apis.name IS 'GetString' AND
-        versions.name IS 'GL' AND versions.major == 1 AND versions.minor == 1;
-INSERT INTO histories (api_id, version_id, status)
-  SELECT apis.id, versions.id, 2 FROM apis, versions
-  WHERE apis.name IS 'GetTexParameterfv' AND
-        versions.name IS 'GL' AND versions.major == 1 AND versions.minor == 1;
-INSERT INTO histories (api_id, version_id, status)
-  SELECT apis.id, versions.id, 2 FROM apis, versions
-  WHERE apis.name IS 'GetTexParameteriv' AND
-        versions.name IS 'GL' AND versions.major == 1 AND versions.minor == 1;
-INSERT INTO histories (api_id, version_id, status)
-  SELECT apis.id, versions.id, 2 FROM apis, versions
-  WHERE apis.name IS 'IndexPointer' AND
-        versions.name IS 'GL' AND versions.major == 1 AND versions.minor == 1;
-INSERT INTO histories (api_id, version_id, status)
-  SELECT apis.id, versions.id, 2 FROM apis, versions
-  WHERE apis.name IS 'InterleavedArrays' AND
-        versions.name IS 'GL' AND versions.major == 1 AND versions.minor == 1;
-INSERT INTO histories (api_id, version_id, status)
-  SELECT apis.id, versions.id, 2 FROM apis, versions
-  WHERE apis.name IS 'NormalPointer' AND
-        versions.name IS 'GL' AND versions.major == 1 AND versions.minor == 1;
-INSERT INTO histories (api_id, version_id, status)
-  SELECT apis.id, versions.id, 2 FROM apis, versions
-  WHERE apis.name IS 'PolygonOffset' AND
-        versions.name IS 'GL' AND versions.major == 1 AND versions.minor == 1;
-INSERT INTO histories (api_id, version_id, status)
-  SELECT apis.id, versions.id, 2 FROM apis, versions
-  WHERE apis.name IS 'PopClientAttrib' AND
-        versions.name IS 'GL' AND versions.major == 1 AND versions.minor == 1;
-INSERT INTO histories (api_id, version_id, status)
-  SELECT apis.id, versions.id, 2 FROM apis, versions
-  WHERE apis.name IS 'PrioritizeTextures' AND
-        versions.name IS 'GL' AND versions.major == 1 AND versions.minor == 1;
-INSERT INTO histories (api_id, version_id, status)
-  SELECT apis.id, versions.id, 2 FROM apis, versions
-  WHERE apis.name IS 'PushClientAttrib' AND
-        versions.name IS 'GL' AND versions.major == 1 AND versions.minor == 1;
-INSERT INTO histories (api_id, version_id, status)
-  SELECT apis.id, versions.id, 2 FROM apis, versions
-  WHERE apis.name IS 'TexImage' AND
-        versions.name IS 'GL' AND versions.major == 1 AND versions.minor == 1;
-INSERT INTO histories (api_id, version_id, status)
-  SELECT apis.id, versions.id, 2 FROM apis, versions
-  WHERE apis.name IS 'TexParameterf' AND
-        versions.name IS 'GL' AND versions.major == 1 AND versions.minor == 1;
-INSERT INTO histories (api_id, version_id, status)
-  SELECT apis.id, versions.id, 2 FROM apis, versions
-  WHERE apis.name IS 'TexParameterfv' AND
-        versions.name IS 'GL' AND versions.major == 1 AND versions.minor == 1;
-INSERT INTO histories (api_id, version_id, status)
-  SELECT apis.id, versions.id, 2 FROM apis, versions
-  WHERE apis.name IS 'TexParameteri' AND
-        versions.name IS 'GL' AND versions.major == 1 AND versions.minor == 1;
-INSERT INTO histories (api_id, version_id, status)
-  SELECT apis.id, versions.id, 2 FROM apis, versions
-  WHERE apis.name IS 'TexParameteriv' AND
-        versions.name IS 'GL' AND versions.major == 1 AND versions.minor == 1;
-INSERT INTO histories (api_id, version_id, status)
-  SELECT apis.id, versions.id, 2 FROM apis, versions
-  WHERE apis.name IS 'TexSubImage' AND
-        versions.name IS 'GL' AND versions.major == 1 AND versions.minor == 1;
-INSERT INTO histories (api_id, version_id, status)
-  SELECT apis.id, versions.id, 2 FROM apis, versions
-  WHERE apis.name IS 'TexSubImage1D' AND
-        versions.name IS 'GL' AND versions.major == 1 AND versions.minor == 1;
-INSERT INTO histories (api_id, version_id, status)
-  SELECT apis.id, versions.id, 2 FROM apis, versions
-  WHERE apis.name IS 'TexSubImage2D' AND
-        versions.name IS 'GL' AND versions.major == 1 AND versions.minor == 1;
-INSERT INTO histories (api_id, version_id, status)
-  SELECT apis.id, versions.id, 2 FROM apis, versions
-  WHERE apis.name IS 'VertexPointer' AND
-        versions.name IS 'GL' AND versions.major == 1 AND versions.minor == 1;
-INSERT INTO histories (api_id, version_id, status)
-  SELECT apis.id, versions.id, 0 FROM apis, versions
-  WHERE apis.name IS 'AreTexturesResident' AND
-        versions.name IS 'GL' AND versions.major == 1 AND versions.minor == 0;
-INSERT INTO histories (api_id, version_id, status)
-  SELECT apis.id, versions.id, 0 FROM apis, versions
-  WHERE apis.name IS 'ArrayElement' AND
-        versions.name IS 'GL' AND versions.major == 1 AND versions.minor == 0;
-INSERT INTO histories (api_id, version_id, status)
-  SELECT apis.id, versions.id, 0 FROM apis, versions
-  WHERE apis.name IS 'BindTexture' AND
-        versions.name IS 'GL' AND versions.major == 1 AND versions.minor == 0;
-INSERT INTO histories (api_id, version_id, status)
-  SELECT apis.id, versions.id, 0 FROM apis, versions
-  WHERE apis.name IS 'CopyTexImage1D' AND
-        versions.name IS 'GL' AND versions.major == 1 AND versions.minor == 0;
-INSERT INTO histories (api_id, version_id, status)
-  SELECT apis.id, versions.id, 0 FROM apis, versions
-  WHERE apis.name IS 'CopyTexImage2D' AND
-        versions.name IS 'GL' AND versions.major == 1 AND versions.minor == 0;
-INSERT INTO histories (api_id, version_id, status)
-  SELECT apis.id, versions.id, 0 FROM apis, versions
-  WHERE apis.name IS 'CopyTexSubImage1D' AND
-        versions.name IS 'GL' AND versions.major == 1 AND versions.minor == 0;
-INSERT INTO histories (api_id, version_id, status)
-  SELECT apis.id, versions.id, 0 FROM apis, versions
-  WHERE apis.name IS 'CopyTexSubImage2D' AND
-        versions.name IS 'GL' AND versions.major == 1 AND versions.minor == 0;
-INSERT INTO histories (api_id, version_id, status)
-  SELECT apis.id, versions.id, 0 FROM apis, versions
-  WHERE apis.name IS 'DeleteTextures' AND
-        versions.name IS 'GL' AND versions.major == 1 AND versions.minor == 0;
-INSERT INTO histories (api_id, version_id, status)
-  SELECT apis.id, versions.id, 0 FROM apis, versions
-  WHERE apis.name IS 'DrawArray' AND
-        versions.name IS 'GL' AND versions.major == 1 AND versions.minor == 0;
-INSERT INTO histories (api_id, version_id, status)
-  SELECT apis.id, versions.id, 0 FROM apis, versions
-  WHERE apis.name IS 'DrawElements' AND
-        versions.name IS 'GL' AND versions.major == 1 AND versions.minor == 0;
-INSERT INTO histories (api_id, version_id, status)
-  SELECT apis.id, versions.id, 0 FROM apis, versions
-  WHERE apis.name IS 'EdgeFlagPointer' AND
-        versions.name IS 'GL' AND versions.major == 1 AND versions.minor == 0;
-INSERT INTO histories (api_id, version_id, status)
-  SELECT apis.id, versions.id, 0 FROM apis, versions
-  WHERE apis.name IS 'EdgeFlagv' AND
-        versions.name IS 'GL' AND versions.major == 1 AND versions.minor == 0;
-INSERT INTO histories (api_id, version_id, status)
-  SELECT apis.id, versions.id, 0 FROM apis, versions
-  WHERE apis.name IS 'EnableClientState' AND
-        versions.name IS 'GL' AND versions.major == 1 AND versions.minor == 0;
-INSERT INTO histories (api_id, version_id, status)
-  SELECT apis.id, versions.id, 0 FROM apis, versions
-  WHERE apis.name IS 'GenTextures' AND
-        versions.name IS 'GL' AND versions.major == 1 AND versions.minor == 0;
-INSERT INTO histories (api_id, version_id, status)
-  SELECT apis.id, versions.id, 0 FROM apis, versions
-  WHERE apis.name IS 'GetPointerv' AND
-        versions.name IS 'GL' AND versions.major == 1 AND versions.minor == 0;
-INSERT INTO histories (api_id, version_id, status)
-  SELECT apis.id, versions.id, 0 FROM apis, versions
-  WHERE apis.name IS 'GetString' AND
-        versions.name IS 'GL' AND versions.major == 1 AND versions.minor == 0;
-INSERT INTO histories (api_id, version_id, status)
-  SELECT apis.id, versions.id, 0 FROM apis, versions
-  WHERE apis.name IS 'GetTexParameterfv' AND
-        versions.name IS 'GL' AND versions.major == 1 AND versions.minor == 0;
-INSERT INTO histories (api_id, version_id, status)
-  SELECT apis.id, versions.id, 0 FROM apis, versions
-  WHERE apis.name IS 'GetTexParameteriv' AND
-        versions.name IS 'GL' AND versions.major == 1 AND versions.minor == 0;
-INSERT INTO histories (api_id, version_id, status)
-  SELECT apis.id, versions.id, 0 FROM apis, versions
-  WHERE apis.name IS 'IndexPointer' AND
-        versions.name IS 'GL' AND versions.major == 1 AND versions.minor == 0;
-INSERT INTO histories (api_id, version_id, status)
-  SELECT apis.id, versions.id, 0 FROM apis, versions
-  WHERE apis.name IS 'InterleavedArrays' AND
-        versions.name IS 'GL' AND versions.major == 1 AND versions.minor == 0;
-INSERT INTO histories (api_id, version_id, status)
-  SELECT apis.id, versions.id, 0 FROM apis, versions
-  WHERE apis.name IS 'NormalPointer' AND
-        versions.name IS 'GL' AND versions.major == 1 AND versions.minor == 0;
-INSERT INTO histories (api_id, version_id, status)
-  SELECT apis.id, versions.id, 0 FROM apis, versions
-  WHERE apis.name IS 'PolygonOffset' AND
-        versions.name IS 'GL' AND versions.major == 1 AND versions.minor == 0;
-INSERT INTO histories (api_id, version_id, status)
-  SELECT apis.id, versions.id, 0 FROM apis, versions
-  WHERE apis.name IS 'PopClientAttrib' AND
-        versions.name IS 'GL' AND versions.major == 1 AND versions.minor == 0;
-INSERT INTO histories (api_id, version_id, status)
-  SELECT apis.id, versions.id, 0 FROM apis, versions
-  WHERE apis.name IS 'PrioritizeTextures' AND
-        versions.name IS 'GL' AND versions.major == 1 AND versions.minor == 0;
-INSERT INTO histories (api_id, version_id, status)
-  SELECT apis.id, versions.id, 0 FROM apis, versions
-  WHERE apis.name IS 'PushClientAttrib' AND
-        versions.name IS 'GL' AND versions.major == 1 AND versions.minor == 0;
-INSERT INTO histories (api_id, version_id, status)
-  SELECT apis.id, versions.id, 0 FROM apis, versions
-  WHERE apis.name IS 'TexImage' AND
-        versions.name IS 'GL' AND versions.major == 1 AND versions.minor == 0;
-INSERT INTO histories (api_id, version_id, status)
-  SELECT apis.id, versions.id, 0 FROM apis, versions
-  WHERE apis.name IS 'TexParameterf' AND
-        versions.name IS 'GL' AND versions.major == 1 AND versions.minor == 0;
-INSERT INTO histories (api_id, version_id, status)
-  SELECT apis.id, versions.id, 0 FROM apis, versions
-  WHERE apis.name IS 'TexParameterfv' AND
-        versions.name IS 'GL' AND versions.major == 1 AND versions.minor == 0;
-INSERT INTO histories (api_id, version_id, status)
-  SELECT apis.id, versions.id, 0 FROM apis, versions
-  WHERE apis.name IS 'TexParameteri' AND
-        versions.name IS 'GL' AND versions.major == 1 AND versions.minor == 0;
-INSERT INTO histories (api_id, version_id, status)
-  SELECT apis.id, versions.id, 0 FROM apis, versions
-  WHERE apis.name IS 'TexParameteriv' AND
-        versions.name IS 'GL' AND versions.major == 1 AND versions.minor == 0;
-INSERT INTO histories (api_id, version_id, status)
-  SELECT apis.id, versions.id, 0 FROM apis, versions
-  WHERE apis.name IS 'TexSubImage' AND
-        versions.name IS 'GL' AND versions.major == 1 AND versions.minor == 0;
-INSERT INTO histories (api_id, version_id, status)
-  SELECT apis.id, versions.id, 0 FROM apis, versions
-  WHERE apis.name IS 'TexSubImage1D' AND
-        versions.name IS 'GL' AND versions.major == 1 AND versions.minor == 0;
-INSERT INTO histories (api_id, version_id, status)
-  SELECT apis.id, versions.id, 0 FROM apis, versions
-  WHERE apis.name IS 'TexSubImage2D' AND
-        versions.name IS 'GL' AND versions.major == 1 AND versions.minor == 0;
-INSERT INTO histories (api_id, version_id, status)
-  SELECT apis.id, versions.id, 0 FROM apis, versions
-  WHERE apis.name IS 'VertexPointer' AND
-        versions.name IS 'GL' AND versions.major == 1 AND versions.minor == 0;
+-- histories from 1.1 {{{
+INSERT INTO histories (api_id, version_id, status)
+  SELECT * FROM (
+    (SELECT id FROM apis WHERE id NOT IN (SELECT DISTINCT api_id FROM histories))
+    CROSS JOIN
+    (SELECT * FROM (
+      SELECT id, 2 FROM versions WHERE name IS 'GL' AND major == 1 AND minor == 1
+      UNION
+      SELECT id, 0 FROM versions WHERE name IS 'GL' AND major == 1 AND minor == 0)));
 -- }}}
 END;
--- }}}
 -- vim: fdm=marker

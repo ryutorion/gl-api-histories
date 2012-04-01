@@ -1,4 +1,8 @@
 -- OpenGL 1.0
+-- versions {{{
+INSERT INTO versions (name, major, minor) VALUES ('GL', 1, 0);
+-- }}}
+
 -- apis {{{
 BEGIN;
 INSERT INTO apis (name) VALUES ('Accum');
