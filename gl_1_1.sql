@@ -20,6 +20,7 @@ UPDATE histories SET status = 4 WHERE
 
 -- apis {{{
 BEGIN;
+-- from 1.0 {{{
 -- INSERT INTO apis (name) VALUES ('Accum');
 -- INSERT INTO apis (name) VALUES ('AlphaFunc');
 -- INSERT INTO apis (name) VALUES ('Begin');
@@ -323,7 +324,8 @@ BEGIN;
 -- INSERT INTO apis (name) VALUES ('Vertex4fv');
 -- INSERT INTO apis (name) VALUES ('Vertex4dv');
 -- INSERT INTO apis (name) VALUES ('Viewport');
-
+-- }}}
+-- from 1.1 {{{
 INSERT INTO apis (name) VALUES ('AreTexturesResident');
 INSERT INTO apis (name) VALUES ('ArrayElement');
 INSERT INTO apis (name) VALUES ('BindTexture');
@@ -352,6 +354,7 @@ INSERT INTO apis (name) VALUES ('TexCoordPointer');
 INSERT INTO apis (name) VALUES ('TexSubImage1D');
 INSERT INTO apis (name) VALUES ('TexSubImage2D');
 INSERT INTO apis (name) VALUES ('VertexPointer');
+-- }}}
 END;
 -- }}}
 
