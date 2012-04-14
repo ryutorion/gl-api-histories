@@ -3,7 +3,7 @@
 INSERT INTO versions (name, major, minor) VALUES ('GL', 3, 2);
 -- }}}
 
--- histories before 3.0 {{{
+-- histories before 3.2 {{{
 INSERT INTO histories
   SELECT apis.id, versions.id, 1 FROM apis, versions
     WHERE versions.name IS 'GL' AND versions.major == 3 AND versions.minor == 2;
