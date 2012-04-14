@@ -791,6 +791,14 @@ INSERT INTO apis (name) VALUES ('GetQueryIndexediv');
 INSERT INTO apis (name) VALUES ('IsTransformFeedback');
 INSERT INTO apis (name) VALUES ('GetUniformSubroutineuiv');
 INSERT INTO apis (name) VALUES ('GetProgramStageiv');
+INSERT INTO apis (name) VALUES ('UniformMatrix2x3dv');
+INSERT INTO apis (name) VALUES ('UniformMatrix3x2dv');
+INSERT INTO apis (name) VALUES ('UniformMatrix2x4dv');
+INSERT INTO apis (name) VALUES ('UniformMatrix4x2dv');
+INSERT INTO apis (name) VALUES ('UniformMatrix3x4dv');
+INSERT INTO apis (name) VALUES ('UniformMatrix4x3dv');
+INSERT INTO apis (name) VALUES ('BlendEquationi');
+INSERT INTO apis (name) VALUES ('BlendEquationSeparatei');
 -- }}}
 END;
 -- }}}
