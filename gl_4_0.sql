@@ -802,9 +802,9 @@ INSERT INTO histories (api_id, version_id, status)
     (SELECT id FROM apis WHERE id NOT IN (SELECT DISTINCT api_id FROM histories))
     CROSS JOIN
     (SELECT * FROM (
-      SELECT id, 2 FROM versions WHERE name IS 'GL' AND major == 3 AND minor == 3
+      SELECT id, 2 FROM versions WHERE name IS 'GL' AND major == 4 AND minor == 0
       UNION
-      SELECT id, 0 FROM versions WHERE name IS 'GL' AND ((major < 3) OR (major == 3 AND minor < 3)))));
+      SELECT id, 0 FROM versions WHERE name IS 'GL' AND major < 4)));
 -- }}}
 END;
 -- vim: fdm=marker
