@@ -42,3 +42,4 @@ CREATE TABLE histories (
 .read gl_3_1.sql
 .read gl_3_2.sql
 .read gl_3_3.sql
+.read gl_4_0.sql
