@@ -632,6 +632,7 @@ INSERT INTO apis (name) VALUES ('VertexAttribI4sv');
 INSERT INTO apis (name) VALUES ('VertexAttribI4ubv');
 INSERT INTO apis (name) VALUES ('VertexAttribI4usv');
 INSERT INTO apis (name) VALUES ('VertexAttribIPoiter');
+INSERT INTO apis (name) VALUES ('MapBufferRange');
 INSERT INTO apis (name) VALUES ('FlushMappedBufferRange');
 INSERT INTO apis (name) VALUES ('GenVertexArrays');
 INSERT INTO apis (name) VALUES ('DeleteVertexArrays');
@@ -689,6 +690,11 @@ INSERT INTO apis (name) VALUES ('IsFramebuffer');
 INSERT INTO apis (name) VALUES ('GetFramebufferAttachmentParameteriv');
 INSERT INTO apis (name) VALUES ('IsRenderbuffer');
 INSERT INTO apis (name) VALUES ('GetRenderbufferParameteriv');
+INSERT INTO apis (name) VALUES ('Enablei');
+INSERT INTO apis (name) VALUES ('Disablei');
+INSERT INTO apis (name) VALUES ('ColorMaski');
+INSERT INTO apis (name) VALUES ('GetBooleani_v');
+INSERT INTO apis (name) VALUES ('GetIntegeri_v');
 -- }}}
 END;
 -- }}}
