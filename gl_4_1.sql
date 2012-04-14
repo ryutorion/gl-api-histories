@@ -887,6 +887,7 @@ INSERT INTO apis (name) VALUES ('GetProgramPipelineiv');
 INSERT INTO apis (name) VALUES ('GetProgramPipelineInfoLog');
 INSERT INTO apis (name) VALUES ('GetShaderPrecisionFormat');
 INSERT INTO apis (name) VALUES ('GetVertexAttribLdv');
+INSERT INTO apis (name) VALUES ('CreateShaderProgramv');
 -- }}}
 END;
 -- }}}
